@@ -1,0 +1,155 @@
+<header>
+  <nav class="col-sm-12 navbar-fixed-top hidden-xs" >
+    <div class="container-fluid">
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a data-target="#perfil" data-toggle="modal"> Perfil </a></li>
+          <li><a href="leilao/"> Sair </a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <nav class="col-sm-12  col-md-12 col-md-offset-10 navbar-fixed-top visible-xs">
+    <div id="navbar" class="navbar-header">
+      <div class="col-sm-2 main">
+        <form class="form-inline">
+          <button type="button" class="btn btn-default" style="border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px;">
+            <a data-target="#perfil" data-toggle="modal"> Perfil </a></li>
+          </button>
+          <button class="btn btn-default" type="button" style="border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px;">
+              <a href="leilao/"> Sair </a></li>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="col-sm-12 col-md-12 col-md-offset-0 main">
+    <div style="margin-bottom: 5px; position:relative;">
+      <div style="margin-bottom: 10px;">
+        <img src="leilao/assets/img/logo.png" alt="" class="logo">
+      </div>
+      <div class="cabecalho">
+        <h1 class="titulo"> Leilão </h1>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="navigation navigation-landscape visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="col-sm-2 main">
+        <button type="button" class="btn btn-primary"  data-toggle="collapse" data-target="#myNavbar" aria-controls="navbar" aria-expanded="true" >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span aria-hidden="true"> Menu </span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <!-- <a class="navbar-brand" data-target="#myNavbar">Menu</a> -->
+      <div class="nav-toggle"></div>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav nav-pills nav-stacked" >
+          <li>
+            <a data-target="#adminHome" data-toggle="tab" ng-click="Administrador.activeMenu('Home')"><span class="glyphicon glyphicon-home" class="sr-only" aria-hidden="true"></span> Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li><a data-target="#parametros" data-toggle="tab" ng-click="Administrador.activeMenu('Parâmetros')"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Parâmetros </a>
+          </li>
+          <li><a data-target="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuários </a>
+            <ol><a data-target="#usuariosLista" data-toggle="tab" ng-click="Administrador.activeMenu('Usuários Ativos')"> Lista de Usuários Ativos </a></ol>
+            <ol><a data-target="#usuariosListaEspera" data-toggle="tab" ng-click="Administrador.activeMenu('Usuários em Espera')"> Lista de Usuários Em Espera </a></ol>
+            <ol><a data-target="#usuariosListaDesativado" data-toggle="tab" ng-click="Administrador.activeMenu('Usuários Desativados')"> Lista de Usuários Desativados </a></ol>
+          </li>
+          <li><a data-target="#"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> Produtos </a>
+            <ol><a data-target="#produtosLista" data-toggle="tab" data-ng-click="Administrador.activeMenu('Produtos')"> Lista de Produtos Ativos</a></ol>
+            <ol><a data-target="#produtosListaDesativado" data-toggle="tab" ng-click="Administrador.activeMenu('Produtos Desativados')"> Lista de Produtos Desativados </a></ol>
+          </li>
+          <li><a data-target="#"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Leilões </a>
+            <ol><a data-target="#iniciarLeilao" data-toggle="tab" ng-click="Administrador.activeMenu('Iniciar Leilão')"> Iniciar Leilões </a></ol>
+            <ol><a data-target="#leilaoFinalizado" data-toggle="tab" ng-click="Administrador.activeMenu('Leilões Finalizados')"> Leilões Finalizados </a></ol>
+          </li>
+        </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+   <div class="row content">
+    <div class="col-sm-2 sidenav hidden-xs" style="margin-top: 10px;">
+      <ul class="nav nav-pills nav-stacked"  role="navlist">
+        <li>
+          <a data-target="#adminHome" data-toggle="tab" ng-click="Administrador.activeMenu('Home')"><span class="glyphicon glyphicon-home" class="sr-only" aria-hidden="true"></span> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li><a data-target="#parametros" data-toggle="tab" ng-click="Administrador.activeMenu('Parâmetros')"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Parâmetros </a>
+        </li>
+        <li><a data-target="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuários </a>
+          <ol><a data-target="#usuariosLista" data-toggle="tab" ng-click="Administrador.activeMenu('Usuários Ativos')"> Lista de Usuários Ativos </a></ol>
+          <ol><a data-target="#usuariosListaEspera" data-toggle="tab" ng-click="Administrador.activeMenu('Usuários em Espera')"> Lista de Usuários Em Espera </a></ol>
+          <ol><a data-target="#usuariosListaDesativado" data-toggle="tab" ng-click="Administrador.activeMenu('Usuários Desativados')"> Lista de Usuários Desativados </a></ol>
+        </li>
+        <li><a data-target="#"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> Produtos </a>
+          <ol><a data-target="#produtosLista" data-toggle="tab" data-ng-click="Administrador.activeMenu('Produtos')"> Lista de Produtos Ativos</a></ol>
+          <ol><a data-target="#produtosListaDesativado" data-toggle="tab" ng-click="Administrador.activeMenu('Produtos Desativados')"> Lista de Produtos Desativados </a></ol>
+        </li>
+        <li><a data-target="#"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Leilões </a>
+          <ol><a data-target="#iniciarLeilao" data-toggle="tab" ng-click="Administrador.activeMenu('Iniciar Leilão')"> Iniciar Leilões </a></ol>
+          <ol><a data-target="#leilaoFinalizado" data-toggle="tab" ng-click="Administrador.activeMenu('Leilões Finalizados')"> Leilões Finalizados </a></ol>
+        </li>
+      </ul>
+    </div>
+
+    <div class="modal fade" id="perfil">
+      <admin-perfil></admin-peril>
+    </div>
+    <div class="tab-content clearfix">
+      <div  ng-if="Administrador.mActiveMenu == 'Home'" id="adminHome" data-toggle="tab">
+        <admin-home></admin-home>
+      </div>
+      <div  ng-if="Administrador.mActiveMenu == 'Parâmetros'" id="parametros" data-toggle="tab">
+        <parametros></parametros>
+      </div>
+      <div ng-if="Administrador.mActiveMenu == 'Usuários Ativos'" id="usuariosLista">
+        <usuarios-lista></usuarios-lista>
+      </div>
+      <div ng-if="Administrador.mActiveMenu == 'Usuários em Espera'"id="usuariosListaEspera">
+        <usuarios-lista-espera></usuarios-lista-espera>
+      </div>
+      <div ng-if="Administrador.mActiveMenu == 'Usuários Desativados'" id="usuariosListaDesativado">
+        <usuarios-lista-desativado></usuarios-lista-desativado>
+      </div>
+      <div ng-if="Administrador.mActiveMenu == 'Produtos'" id="produtosLista">
+        <produtos-lista></produtos-lista>
+      </div>
+      <div ng-if="Administrador.mActiveMenu == 'Produtos Desativados'" id="produtosListaDesativado">
+        <produtos-lista-desativado></produtos-lista-desativado>
+      </div>
+      <div ng-if="Administrador.mActiveMenu == 'Iniciar Leilão'" id="iniciarLeilao">
+        <iniciar-leilao></iniciar-leilao>
+      </div>
+      <div ng-if="Administrador.mActiveMenu == 'Leilões Finalizados'" id="leilaoFinalizado">
+        <leilao-finalizado></leilao-finalizado>
+      </div>
+    </div>
+    <div class="modal fade" id="SenhaAlteradasucesso">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h2 class="modal-title"> Alterar Senha </h2>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="text-center">
+                <p> Senha Alterada com sucesso. </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                  <span aria-hidden="true"> Fechar </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

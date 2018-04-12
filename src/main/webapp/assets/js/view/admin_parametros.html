@@ -1,0 +1,142 @@
+<div class="container-fluid">
+  <div class="col-sm-9 col-md-10 main">
+    <h1 class="page-header"> Parâmetros </h1>
+  </div>
+  <div class="container-fluid">
+    <div class="col-sm-5 col-md-5 main">
+      <h2 class="page-header"> Tempo </h2>
+      <form class="form-inline" data-ng-submit="Administrador.cadastrarAcrescimo(Administrador.tempo)">
+        <div class="form-group"><br>
+          <p> Atualmente o tempo de acrescimo é de {{Administrador.tempoDeAcrescimoAtual}} segundos. </p>
+          <label class="Tempo" for="inlineFormInput">Tempo: </label>
+          <input type="number" min="1" max="200" class="form-control" id="tempoAcrescimo" title="Inserir tempo em segundos." data-ng-model="Administrador.tempo.tempoAcrescimo" ng-required="true">
+          <input type="submit" value="Alterar" class="btn btn-success" data-ng-click="Administrador.cadastrarAcrescimo(Administrador.tempo)">
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-4  col-md-5 main">
+      <h2 class="page-header"> Leilões Simultâneos </h2>
+      <form class="form-inline" data-ng-pristine data-ng-submit="Administrador.cadastrarQuantidadeLeilao(Administrador.qtdL)">
+        <div class="form-group"><br>
+          <p> Atualmente a quanditade de leilões simultâneos é {{Administrador.quantidadeDeLeiloesSimultaneosAtual}}. </p>
+          <label class="Tempo" for="inlineFormInput">Quantidade de Leilões: </label>
+          <input type="number" min="1" max="10"  class="form-control" id="qtdLeilao" title="Inserir quantidade de leilões simulâneos." data-ng-model="Administrador.qtdL.qtdLeilao" ng-required="true">
+          <input type="submit" value="Alterar" class="btn btn-success" data-ng-click="Administrador.cadastrarQuantidadeLeilao(Administrador.qtdL)">
+        </div>
+      </form>
+    </div>
+    <div class="modal fade" id="editarUnidade">
+      <atualizar-unidade></atualizar-unidade>
+    </div>
+    <div class="modal fade" id="uniDesativadas">
+      <unidades-desativadas></unidades-desativadas>
+    </div>
+    <div class="col-sm-9 col-md-10 main" style="margin-top: 40px;">
+      <h2 class="page-header"> Unidades </h2>
+      <!-- <form class="form-inline" name="formUnidade" data-ng-pristine data-ng-submit="Login.cadastrarUnidade(Login.unidade)"> -->
+      <div class="col-sm-5 col-md-4 main">
+        <form class="form-inline" name="formUnidade" data-ng-pristine data-ng-submit="Administrador.cadastrarUnidade(Administrador.unidade)">
+          <div class="form-group">
+            <p>Incluir uma nova unidade como opção de cadastro!</p>
+            <label class="unidade" for="inlineFormInput"> Unidade: </label>
+            <input type="text" class="form-control" maxlength="40"  ng-required="true" title="Unidade do produto é obrigatória." data-ng-model="Administrador.unidade.unidadeNome">
+            <input type="submit" value="Incluir" class="btn btn-success" data-ng-click="Administrador.cadastrarUnidade(Administrador.unidade)">
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-4 col-md-4 main col-md-offset-3" style="padding-left: 105px;">
+        <br>
+        <button type="button" class="pull-left btn btn-success" data-toggle="modal" data-target="#uniDesativadas">
+          <span aria-hidden="true"> Unidades Desativadas </span>
+        </button>
+      </div>
+      <div class="modal fade" id="desativarUnidadeSucesso">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Desativar Unidade </h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p> Unidade desativada com sucesso. </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="reativadoUnidadeSucesso">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Reativar Unidade </h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p> Unidade Reativado com sucesso. </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="desativarErro">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Desativar </h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p> Não foi possível realizar a ação. </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-ng-repeat="unit in Administrador.unidades">
+              <td>{{unit.unidadeNome}}</td>
+              <td>
+                <!-- <a data-toggle="modal" data-target="#editarUsuario" style="text-decoration: none;" >  <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"> </span> </a> -->
+                <button data-toggle="modal" data-target="#editarUnidade" type="button" class="btn btn-default" data-ng-click="Administrador.editarUnidade(unit, id_unidade)">
+                  <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 13px;"> </span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div id="editarUnidade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"> Editar Unidade </h2>
+      </div>
+      <div class="modal-body">
+        <form name="editarUnidade" data-ng-submit="Administrador.atualizarUnidade(Administrador.editUnit)">
+          <div class="form-group">
+            <label> ID: </label>
+            <input type="text" class="form-control" id="unidadeId" required ng-model="Administrador.editUnit.unidadeId" disabled>
+            <label> Nome: </label>
+            <input type="text" class="form-control" id="unidadeNome"  maxlength="40" required ng-model="Administrador.editUnit.unidadeNome">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger pull-left" data-ng-click="Administrador.desativarUnidade(Administrador.editUnit)">
+              <span aria-hidden="true"> Desativar </span>
+            </button>
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              <span aria-hidden="true"> Cancelar </span>
+            </button>
+            <input type="submit" id="editarUnidadeSubmit" value="Confirmar" class="btn btn-success" data-close="modal" data-ng-click="Administrador.atualizarUnidade(Administrador.editUnit)"></input>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

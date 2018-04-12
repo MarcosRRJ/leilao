@@ -1,0 +1,97 @@
+#%RAML 1.0
+title: Leilao
+version: v1
+baseUri: /login
+
+#Login
+
+/loginRest:
+  post:
+    headers:
+      Content-Type:
+    body:
+      application/json:
+          type: object
+          properties:
+            netId: string
+            senha: string
+          example: |
+            {
+              "netId": "snoo",
+              "senha": "P@ssW0rd"
+            }
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              id_usuario: integer
+              nome: string
+              sobrenome: string
+              email: string
+              netId: string
+              cpf: integer
+              senha: string
+              tipo:
+                id: integer,
+                role: string
+              situacao: integer
+              unidadeId:
+                unidadeId: integer,
+                unidadeNome: string,
+                situacao: integer
+              #token: string
+
+
+/registrarUsuarioRest:
+  post:
+    headers:
+      Content-Type:
+    body:
+      application/json:
+          type: object
+          properties:
+            nome: string
+            sobrenome: string
+            email: string
+            netId: string
+            cpf: integer
+            unidadeId: integer
+            senha: string
+          example: |
+            {
+              "nome": "Snoopy",
+              "sobrenome": "Mammal",
+              "email": "email@gft.com",
+              "netId": "snoo",
+              "cpf": 99999999,
+              "unidadeId": 1,
+              "senha": "P@ssW0rd"
+            }
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+
+
+/listaTodasUnidade:
+  post:
+    headers:
+      Content-Type:
+    body:
+      application/json:
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              unidadeId: integer
+              unidadeNome: string
+              situacao: integer

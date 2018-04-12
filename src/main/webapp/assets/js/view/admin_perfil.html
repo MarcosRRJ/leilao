@@ -1,0 +1,44 @@
+<div id="perfilAdministrador">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"> Perfil - {{Administrador.storageStorage.nome}} </h2>
+      </div>
+      <div class="modal-body">
+        <form name="editarUsuario" data-ng-submit="Administrador.atualizarPerfil(Administrador.attForm)">
+          <div class="form-group">
+            <label> Nome: </label>
+            <input type="text" class="form-control" id="perfilName" value="{{Administrador.storageStorage.nome}}" disabled>
+            <label> Sobrenome: </label>
+            <input type="text" class="form-control" id="perfilLastName" value="{{Administrador.storageStorage.sobrenome}}" disabled>
+          </div>
+          <div class="form-group">
+            <label> E-Mail: </label>
+            <input type="email" class="form-control" id="perfilEmail" value="{{Administrador.storageStorage.email}}" disabled>
+            <label> NetID: </label>
+            <input type="text" class="form-control" id="perfilNetID" value="{{Administrador.storageStorage.netId}}" disabled>
+            <label> CPF: </label>
+            <input type="text" class="form-control" id="cpf3" maxlength="14" value="{{Administrador.storageStorage.cpf}}" disabled>
+          </div>
+          <div class="form-group">
+            <label> Senha Atual: </label>
+            <input type="password" class="form-control" id="senha" ng-required="true" data-ng-model="Administrador.attForm.senha">
+          </div>
+          <div class="form-group">
+            <label> Nova senha : </label>
+            <input type="password" class="form-control" id="novaSenha" ng-required="true" data-ng-model="Administrador.attForm.novaSenha">
+          </div>
+          <p class="text-center"> O formulário servirá apenas para alterar a senha, caso tenha a necessidade de alterar alguma outra informação, entre em contato com a Infraestrutura.</p>
+          <p class="alert">{{mensagemPerfil}}</p>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              <span aria-hidden="true"> Cancelar </span>
+            </button>
+            <input type="submit" id="perfilAdministradorSubmit" value="Confirmar" class="btn btn-success">  </input>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

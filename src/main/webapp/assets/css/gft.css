@@ -1,0 +1,80 @@
+.headerLabel {
+   font-family: Arial;
+   font-size: 12px;
+   color: white;
+   font-weight: bold;
+}
+
+.headerTitle {
+   font-family: Arial, Verdana;
+   font-size: 16px;
+   color: #969696;
+   font-weight: bold;
+}
+
+* html div#centered {
+   width: expression( document.body.clientWidth > 1163 ? "1163px" : "auto" ); /* sets max-width for IE */
+}
+
+div#centered {
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1163px;
+    padding: 0 7px;
+    text-align: center;
+}
+
+* html #container-main {
+   width: expression( document.body.clientWidth > 1163 ? "1163px" : "auto" ); /* sets max-width for IE */
+}
+
+#container-main {
+    border-bottom: 5px solid #b1b2b3;
+    max-width: 1163px;
+    text-align: left;
+    width: 100%;
+}
+
+td.navTop {
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	background-image: url('/typo3/sysext/cms/media/theme/header_topleft.jpg');
+	width: 200px;
+	height: 150px;
+}
+
+td.navTopRight {
+	background-image: url('/typo3/sysext/cms/media/theme/header_topmiddle.jpg');
+	height: 150px;
+}
+
+td.navTopRight .logo {
+	background-image: url('/typo3/sysext/cms/media/theme/header_topright.png');
+	width: 308px;
+	height: 150px;
+	display: block;
+	float: right;
+}
+
+td.navBody {
+    background-color: #fff;
+    margin: 0;
+    height: 600px;
+}
+
+table#menuContainer {
+    background: url('/typo3/sysext/cms/media/theme/menuContainer.png') top left no-repeat;
+}
+
+/* menu containers */
+#container-menu-level4 {
+    background: url('/typo3/sysext/cms/media/theme/container-menu-level4.png') top left no-repeat;
+    padding: 0px;
+    margin: 0px;
+    /*display: block;  to powoduje, ze pod ff sie nie rozjezdza*/
+}
+
+#container-menu-level5 {
+    background-color: white;
+}

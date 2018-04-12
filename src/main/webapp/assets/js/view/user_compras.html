@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="col-sm-9 col-md-10 main">
+    <h1 class="page-header"> Minhas Compras </h1>
+  </div>
+  <div>
+    <div class="col-sm-9 col-md-10 main" ng-if="Usuario.listaDeLeiloesArrematadoPorUmUser==false">
+      <p>Ainda não há compras!</p>
+      <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="font-size: 60px; margin-left: 30%;"> </span>
+      <div class="col-xs-3"><hr></div>
+    </div>
+    <div class="container">
+      <div class="col-sm-10 col-md-10 ">
+        <div class="row">
+          <div class="col-sm-5 col-md-3" data-ng-repeat="scheduledAuctionUsuarioLista in Usuario.listaDeLeiloesArrematadoPorUmUser">
+            <div class="thumbnail" style="height: 610px;">
+              <a href="http://bid.gft.com/leilao/{{scheduledAuctionUsuarioLista.idLeilao.idProduto.imagemPath}}" onclick="return hs.expand(this,
+            {wrapperClassName: 'borderless floating-caption', dimmingOpacity: 0.75, align: 'center'})">
+                <img ng-src="leilao/{{scheduledAuctionUsuarioLista.idLeilao.idProduto.imagemPath}}" alt="Imagem do Produto" style="max-width:100%;width: 215px;height: 180px;">
+              </a>
+              <div class="text-center">
+                <div ng-init="limit2 = 15; moreShown4 = false">
+                  <p><strong>{{scheduledAuctionUsuarioLista.nomeProduto | limitTo: limit2}}{{scheduledAuctionUsuarioLista.nomeProduto.length > limit2 ? '...' : ''}}</strong>
+                  <a ng-show="scheduledAuctionUsuarioLista.nomeProduto.length > limit2"
+                    href ng-click="limit2=scheduledAuctionUsuarioLista.nomeProduto.length; moreShown4 = true">  ver mais
+                  </a>
+                  <a ng-show="moreShown4" href ng-click="limit2=15; moreShown4 = false"> ver menos </a>
+                  </p>
+                </div>
+                <div class="text-left">
+                  <simple-format style="white-space: pre-wrap;">{{scheduledAuctionUsuarioLista.idLeilao.idProduto.descricao}}</simple-format>
+                </div>
+                <hr class="col-xs-10"></hr>
+                <p> Valor do Arremate: <strong> {{scheduledAuctionUsuarioLista.valorArrematado | currency:'R$ '}} </strong></p>
+                <p> Data do Arremate: <strong> {{scheduledAuctionUsuarioLista.dataArremate | date : "dd/MM/yyyy HH:mm:ss"}} </strong> </p>
+                <p> Este produto pertence à unidade de <span style="color: red; text-transform: uppercase;"> <strong> {{scheduledAuctionUsuarioLista.unidadeProduto}} </strong> </span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,189 @@
+<div class="container-fluid">
+	<div class="corpoLogin" style="padding-top: 0px;">
+		<div id="login" class="containerLogin">
+			<form id="fm1" class="fm-v clearfix form-signin" data-ng-submit="Login.validar()">
+				<div class="row fl-controls-left" style="margin-bottom: 5px; position:relative;">
+					<div style="margin-left: 60%; margin-bottom: 10px;">
+						<img class="img-responsive" src="leilao/assets/img/logo.png" alt="" class="logo">
+					</div>
+					<div class="cabecalho">
+						<h1 class="titulo"> Leilão </h1>
+					</div>
+					<label class="formTitleRequired sr-only">
+						NetId ou E-Mail
+					</label>
+					<input name="netId" class="formText form-control" tabindex="1"
+					placeholder="NetID" size="25" maxlength="6" autocomplete="on" type="text" ng-required="true" data-ng-model="credentials.netId">
+				</div>
+				<div class="row fl-controls-left">
+					<label class="formTitleRequired sr-only">
+						Password
+					</label>
+					<input name="senha" class="formText form-control" tabindex="2"
+					placeholder="Senha" size="25" autocomplete="off" type="password" maxlength="30" ng-required="true" data-ng-model="credentials.senha">
+				</div>
+				<input type="submit" id="loginSubmit" value="Acessar" class="btn btn-primary btn-lg btn-block"></input>
+				<p class="alert">{{mensagem}}</p>
+			</form>
+		</div>
+		<div class="text-center">
+			<a data-target="#recuperar" data-toggle="modal" style="margin-right: 60px"> Esqueceu a Senha? </a>
+			<a data-target="#cadastrarUsuario" data-toggle="modal"> Não tem Cadastro? </a>
+		</div>
+		<div class="modal fade" id="cadastrarUsuario">
+			<login-cadastrar-usuario></login-cadastrar-usuario>
+		</div>
+		<div class="modal fade" id="recuperar">
+			<login-recuperar-acesso></login-recuperar-acesso>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="cadastrarUsuarioLoginSucesso">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h2 class="modal-title"> Cadastro </h2>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="text-center">
+						<p> Cadastro realizado, o acesso será liberado pela Infraestrutura. </p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+							<span aria-hidden="true"> Fechar </span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="cadastrarUsuarioLoginErroEmail">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h2 class="modal-title"> Cadastro </h2>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="text-center">
+						<p> Não foi possível realizar o Cadastro. Já existe um usuário com esse Email. </p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<span aria-hidden="true"> Fechar </span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="cadastrarUsuarioLoginErroNetId">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h2 class="modal-title"> Cadastro </h2>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="text-center">
+						<p> Não foi possível realizar o Cadastro. Já existe um usuário com esse NetId. </p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<span aria-hidden="true"> Fechar </span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="cadastrarUsuarioLoginErroCPF">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h2 class="modal-title"> Cadastro </h2>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="text-center">
+						<p> Não foi possível realizar o Cadastro. Já existe um usuário com esse CPF. </p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<span aria-hidden="true"> Fechar </span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="usuarioDesativado">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h2 class="modal-title"> Usuário Desativado </h2>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="text-center">
+						<p> Por algum motivo seu seu perfil foi desativado, favor entrar em contato com a equipe de Infraestrutura</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+							<span aria-hidden="true"> Fechar </span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="usuarioEmEmpera">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h2 class="modal-title"> Usuário em Empera </h2>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="text-center">
+						<p> Seu usuário ainda não foi liberado, favor entrar em contato com a equipe de Infraestrutura</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+							<span aria-hidden="true"> Fechar </span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="cpf-erro" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Cadastrado Usuário</h4>
+			</div>
+			<div class="modal-body">
+				<p> CPF Inválido </p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>

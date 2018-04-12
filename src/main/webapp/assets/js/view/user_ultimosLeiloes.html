@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="col-sm-9 col-md-10 main">
+    <h1 class="page-header"> Últimos Leilões </h1>
+  </div>
+  <div class="col-sm-9 col-md-10 main">
+    <div id="imaginary_container">
+      <div class="input-group stylish-input-group">
+        <input type="search" name="s" class="search-field form-control" placeholder="Pesquisar últimos Leilões" ng-model="searchLeiloesFinalizados" style="border-right:0; box-shadow:0 0 0; border-color:#ccc;">
+        <span class="input-group-addon" style="background: white !important; ">
+          <button type="submit" style=" border:0; background:transparent;">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="col-sm-9 col-md-10 main">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th> N° Leilão </th>
+            <th> Ganhador </th>
+            <th> Produto </th>
+            <th> Valor Arrematado </th>
+            <th> Data do Arremate </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr dir-paginate="leiloesFinalizados in Usuario.leiloesArrematadosUsuario | filter:searchLeiloesFinalizados | itemsPerPage:10" pagination-id="arrematadoUser">
+            <td> {{leiloesFinalizados.idLeilao.idLeilao}} </td>
+            <td> {{leiloesFinalizados.nomeGanhador}} </td>
+            <td> {{leiloesFinalizados.nomeProduto}} </td>
+            <td> {{leiloesFinalizados.valorArrematado | currency:'R$ '}} </td>
+            <td> {{leiloesFinalizados.dataArremate | date : "dd/MM/yyyy HH:mm:ss"}} </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <ul class="pagination">
+          <dir-pagination-controls pagination-id="arrematadoUser" max-size="5" boundary-links="true"></dir-pagination-controls>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

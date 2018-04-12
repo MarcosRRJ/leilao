@@ -1,0 +1,107 @@
+<!-- {{Usuario.leiloesUsuario[0].idProduto.descricao.split('\n').length}} -->
+<div class="container-fluid">
+  <div class="col-sm-9 col-md-10 main" style="padding-left: 15px;padding-right: 15px;">
+    <h1 class="page-header"> Home </h1>
+    <div class="col-sm-9 col-md-10 main" ng-if="Usuario.leiloesUsuario==false">
+      <p>Não há nenhum Leilão em Andamento</p>
+    </div>
+    <div class="col-sm-12 col-md-5 main" data-ng-repeat="auctionUsuario in Usuario.leiloesUsuario">
+      <div class="col-sm-6 col-md-6">
+        <div class="thumbnail" style="height: 690px;">
+          <a href="http://bid.gft.com/leilao/{{auctionUsuario.idProduto.imagemPath}}" onclick="return hs.expand(this,
+		{wrapperClassName: 'borderless floating-caption', dimmingOpacity: 0.75, align: 'center'})">
+            <img ng-src="leilao/{{auctionUsuario.idProduto.imagemPath}}" alt="Imagem do Produto" style="max-width:100%;width: 215px;height: 180px;">
+          </a>
+          <div class="text-center">
+            <div>
+              <div data-ng-repeat="userPegou in Usuario.pegou">
+                <p [ngSwitch]="(auctionUsuario.idLeilao == userPegou.idLeilao)">
+                  <div ng-if="auctionUsuario.idLeilao == userPegou.idLeilao">
+                    <h1> <timer end-time="userPegou.dataFimLeilao" max-time-unit="'hour'" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}}</timer> </h1>
+                  </div>
+                </p>
+              </div>
+            </div>
+            <div ng-init="limit2 = 20; moreShown4 = false">
+              <h3>{{auctionUsuario.idProduto.nomeProduto | limitTo: limit2}}{{auctionUsuario.idProduto.nomeProduto.length > limit2 ? '' : ''}}</h3>
+              <a ng-show="auctionUsuario.idProduto.nomeProduto.length > limit2"
+                href ng-click="limit2=auctionUsuario.idProduto.nomeProduto.length; moreShown4 = true">  ver mais
+              </a>
+              <a ng-show="moreShown4" href ng-click="limit2=13; moreShown4 = false"> ver menos </a>
+            </div>
+            <div class="text-left">
+              <simple-format style="white-space: pre-wrap;">{{auctionUsuario.idProduto.descricao}}</simple-format>
+            </div>
+              <hr class="col-xs-10"></hr>
+            <div class="d-flex align-items-center">
+              <div>
+                <div data-ng-repeat="userPegou in Usuario.pegou">
+                  <p [ngSwitch]="(auctionUsuario.idLeilao == userPegou.idLeilao)">
+                    <div ng-if="auctionUsuario.idLeilao == userPegou.idLeilao">
+                      <p> Último Lance: <strong> {{userPegou.valorAtual | currency:'R$ ' }} </strong> </p>
+                    </div>
+                  </p>
+                </div>
+              </div>
+              <p> Este produto pertence à unidade de </p>
+              <p class="text-center"><span style="color: red; text-transform: uppercase;"> <strong> {{auctionUsuario.idProduto.unidadeId.unidadeNome}} </strong> </span></p>
+              <!-- <hr></hr> -->
+              <div style="height: 50px;">
+                <div data-ng-repeat="userPegou in Usuario.pegou">
+                  <div data-ng-repeat="user in Usuario.meuLanceIdLeilao">
+                    <!-- <div class="" ng-if=" user.idLeilao.idLeilao == false">
+                      <p>oi</p>
+                    </div> -->
+                    <p [ngSwitch]="(userPegou.idLeilao == user.idLeilao.idLeilao && user.idLeilao.idLeilao == auctionUsuario.idLeilao)">
+                      <span *ng-switch-when="true">
+                        <div class="alert alert-success" ng-if="userPegou.idLeilao == user.idLeilao.idLeilao && user.valorLance == userPegou.valorAtual && user.idLeilao.idLeilao == auctionUsuario.idLeilao">
+                          <p class="text-center"> Meu Lance: {{user.valorLance | currency:'R$' }} </p>
+                        </div>
+                      </span>
+                      <span *ng-switch-default>
+                        <div class="alert alert-danger" ng-if="userPegou.idLeilao ==  user.idLeilao.idLeilao && user.idLeilao.idLeilao == auctionUsuario.idLeilao && user.valorLance != userPegou.valorAtual">
+                          <p class="text-center"> Meu Lance: {{user.valorLance | currency:'R$' }} </p>
+                        </div>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 main">
+        <div class="thumbnail">
+          <div class="caption">
+            <p class="text-center"> <strong> {{auctionUsuario.idProduto.nomeProduto}} </strong> </p> <hr>
+            <p class="text-center"> Valor Inicial: <strong> {{auctionUsuario.idProduto.valorInicial | currency:'R$' }} </strong> </p> <hr>
+            <p class="text-center"> Valor por Lance: <strong> {{auctionUsuario.idProduto.valorPorLance | currency:'R$' }}</strong> </p><hr>
+            <div>
+              <div data-ng-repeat="userPegou in Usuario.pegou">
+                <p [ngSwitch]="(auctionUsuario.idLeilao == userPegou.idLeilao)">
+                  <div ng-if="auctionUsuario.idLeilao == userPegou.idLeilao">
+                    <p class="text-center"> Lance Atual: <strong> {{userPegou.valorAtual | currency:'R$' }} </strong> </p>
+                    <p class="text-center" ng-if="userPegou.idUsuario.nome!==undefined"> Lance efetuado por: <strong>{{userPegou.idUsuario.nome}} {{userPegou.idUsuario.sobrenome}}</strong></p>
+                    <p class="text-center" ng-if="userPegou.idUsuario.nome==undefined"> Lance Inicial do Leilão,<strong> niguém deu lance ainda</strong></p>
+                  </div>
+                </p>
+              </div>
+            </div>
+            <input type="hidden" name="idleilao" id="idLeilao" value="{{auctionUsuario.idLeilao}}">
+          </div>
+        </div>
+        <div data-ng-repeat="userPegou in Usuario.pegou">
+          <p [ngSwitch]="(auctionUsuario.idLeilao == userPegou.idLeilao)">
+            <div ng-if="auctionUsuario.idLeilao == userPegou.idLeilao">
+              <button type="submit" id="sendLanceSubmit" class="btn btn-danger btn-lg btn-block" data-ng-click="Usuario.darLance(auctionUsuario.idLeilao); Usuario.lanceUsuarioEspecifico(auctionUsuario.idLeilao); Usuario.listarUltimoLanceLeilaoUsuario(auctionUsuario.idLeilao);Usuario.insertLeiilaoArrematado(auctionUsuario.idLeilao);" onclick="this.disabled=true" ng-disabled="isDisabled == true || Usuario.storageStorage.id_usuario == userPegou.idUsuario.id_usuario || userPegou.dataFimLeilao < Usuario.dataMenosMeio" style="background-color: #9e0000; border-color: #9e0000; font: 25px sans-serif; font-weight:bold;">
+                Lance
+              </button>
+            </div>
+          </p>
+        </div>
+    </div>
+  <div class="col-xs-12 col-sm-12"><hr></div>
+  </div>
+  </div>
+</div>

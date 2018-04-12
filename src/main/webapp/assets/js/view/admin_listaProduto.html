@@ -1,0 +1,207 @@
+<div class="container-fluid">
+	<div class="col-sm-9 col-md-10 main">
+		<h1 class="page-header"> Lista de Produtos Ativos</h1>
+	</div>
+	<div class="col-sm-9 col-md-10 main">
+		<div id="imaginary_container">
+			<div class="input-group stylish-input-group">
+				<input type="search" name="s" class="search-field form-control" placeholder="Pesquisar Produto" ng-model="searchProduct" style="border-right:0; box-shadow:0 0 0; border-color:#ccc;">
+				<span class="input-group-addon" style="background: white !important; ">
+					<button type="submit" style=" border:0; background:transparent;">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="importarExcelSucesso">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h2 class="modal-title"> Import Planilha de Produto </h2>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="text-center">
+
+							<div>
+								<div ng-if="Administrador.excel.contaLinha == 0">
+									<p>Não foi possivel cadastrar nenhum produto verifique a Planilha</p>
+								</div>
+								<div ng-if="Administrador.excel.contaLinha > 0">
+									<p> Import Realizado com sucesso. </p>
+									<p> Numero de produtos cadastrado: {{Administrador.excel.contaLinha}} </p>
+									<div ng-repeat="produtos in Administrador.excel.lista">
+										<p>Dados inconsistente na linha: {{produtos}} Verifique a Planilha</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+								<span aria-hidden="true"> Fechar </span>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="importarExcelError">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h2 class="modal-title"> Import Planilha de Produto </h2>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="text-center">
+							<p> Por Favor selecione um Arquivo </p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+								<span aria-hidden="true"> Fechar </span>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="cadProdutoSucess">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h2 class="modal-title"> Cadastro de Produto </h2>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="text-center">
+							<p> Produto Cadastrado. </p>
+						</div>
+						<div class="modal-footer">
+								<button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+								<span aria-hidden="true"> Fechar </span>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="updateProdutoSucess">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h2 class="modal-title"> Editar Produto </h2>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="text-center">
+							<p> Produto Atualizado. </p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+								<span aria-hidden="true"> Fechar </span>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="desativaProdutoSucess">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h2 class="modal-title"> Desativar Produto </h2>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="text-center">
+							<p> Produto Desativado. </p>
+						</div>
+						<div class="modal-footer">
+								<button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+								<span aria-hidden="true"> Fechar </span>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-9 col-md-10 main">
+		<label class="btn btn-success btn-file">
+			Importar do Excel <input type="file" file-model="Administrador.file" name="file" accept=".xls,.xlsx" style="display: none;" /><br>
+		</label>
+		<!-- <input type="file" file-model="Administrador.file" name="file" style="display: none;"><br> -->
+		<button type="button"  class="btn btn-default" ng-click="Administrador.uploadFileExcel()">Enviar</input></button>
+		<button type="button" class="pull-right btn btn-success" data-toggle="modal" data-target="#cadastrarProduto">
+			<span aria-hidden="true"> Cadastrar Produto </span>
+		</button>
+	</div>
+	<div class="modal fade" data-dismiss="modal" id="cadastrarProduto">
+	  <cadastrar-produto></cadastrar-produto>
+	</div>
+	<div class="modal fade" id="editarProduto">
+	  <atualizar-produto></atualizar-produto>
+	</div>
+	<div class="modal fade" id="desativarProduto">
+	  <desativar-produto></desativar-produto>
+	</div>
+	<div class="container-fluid">
+		<div class="col-sm-9  col-md-10">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th> Foto </th>
+						<th>Nome</th>
+						<th>Descrição</th>
+						<th>Unidade</th>
+						<th>Valor Inicial</th>
+						<th>Valor Por Lance</th>
+						<th>Editar</th>
+						<!--
+						<th>Desativar</th>
+						-->
+					</tr>
+				</thead>
+				<tbody>
+					<tr dir-paginate="product in Administrador.produtos | filter:searchProduct | itemsPerPage:5" pagination-id="ativo">
+						<td> <img class="d-flex mr-3" ng-src="leilao/{{product.imagemPath}}" alt="Generic placeholder image" style="float: left; height: 70px; width: 70px;"> </td>
+						<td>{{product.nomeProduto}}</td>
+						<td style="width: 500px;">
+							<div ng-init="limit = 58; moreShown = false" >
+									{{product.descricao | limitTo: limit}}{{product.descricao.length > limit ? '...' : ''}}
+									<a ng-show="product.descricao.length > limit"
+										href ng-click="limit=product.descricao.length; moreShown = true">  ver mais
+									</a>
+									<a ng-show="moreShown" href ng-click="limit=58; moreShown = false"> ver menos </a>
+							</div>
+						</td>
+						<td>{{product.unidadeId.unidadeNome}}</td>
+						<td>{{product.valorInicial | currency:'R$ '}}</td>
+						<td>{{product.valorPorLance | currency:'R$ '}}</td>
+						<td>
+	            <!-- <a data-toggle="modal" data-target="#editarUsuario" style="text-decoration: none;" >  <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"> </span> </a> -->
+	            <button data-toggle="modal" data-target="#editarProduto" type="button" title="Editar"  class="btn btn-default" data-ng-click="Administrador.editarProduto(product)">
+	              <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 13px;"> </span>
+	            </button>
+	          </td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="text-center">
+	      <ul class="pagination">
+	        <dir-pagination-controls pagination-id="ativo" max-size="5" boundary-links="true"></dir-pagination-controls>
+	      </ul>
+	    </div>
+		</div>
+	</div>
+</div>

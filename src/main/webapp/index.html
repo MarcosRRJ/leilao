@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-ng-app="app">
+	<head>
+		<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Sistema de leilão desenvolvido como projeto interno.">
+    <meta name="author" content="Jessé Rodrigues de Souza, Marcos Roberto Rafael Junior e GFT">
+		<base href="/">
+		<link href="leilao/assets/img/favicon.ico" rel="icon" />
+		<title> {{$root.title}} | Leilão </title>
+
+		<!-- Bootstrap v3.3.7 core CSS -->
+		<link href="leilao/assets/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+		<!-- Custom styles for this template -->
+		<!--
+			<link href="leilao/assets/css/signin.css" rel="stylesheet" type="text/css">
+			<link href="leilao/assets/css/cas.css" rel="stylesheet" type="text/css">
+			<link href="leilao/assets/css/gft.css" rel="stylesheet" type="text/css">
+		-->
+
+		<link href="leilao/assets/css/dashboard.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="leilao/assets/css/angular-datepicker.css">
+
+		<link rel ="stylesheet" type="text/css" href = "leilao/assets/highslide/highslide.css"	/>
+
+
+
+  </head>
+
+  <body>
+
+    <div ng-view> </div>
+
+		<footer>
+			<!-- jQuery v3.2.1 -->
+			<script src="leilao/assets/js/jquery/jquery.min.js" type="application/javascript"></script>
+
+			<script type="text/javascript" src="leilao/assets/highslide/highslide-with-gallery.js"></script>
+			<script src="leilao/assets/highslide/highslide.js" type="application/javascript"></script>
+
+			<script type="text/javascript">
+				hs.graphicsDir = 'leilao/assets/highslide/graphics/';
+				hs.align = 'center';
+				hs.transitions = ['expand', 'crossfade'];
+				hs.wrapperClassName = 'dark borderless floating-caption';
+				hs.fadeInOut = true;
+				hs.dimmingOpacity = .75;
+
+				// Add the controlbar
+				if (hs.addSlideshow) hs.addSlideshow({
+					//slideshowGroup: 'group1',
+					interval: 5000,
+					repeat: false,
+					useControls: false,
+					fixedControls: 'fit',
+					overlayOptions: {
+						opacity: .6,
+						position: 'bottom center',
+						hideOnMouseOut: false
+					}
+				});
+			</script>
+
+			<script src="leilao/assets/js/enviar.js" type="application/javascript"></script>
+			<!-- Angular v1.6.4 -->
+			<script src="leilao/assets/js/angular/angular.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/angular/angular-route.js" type="application/javascript"></script>
+
+			<!-- datepicker -->
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.0/angular-locale_pt-br.js"></script>
+			<script type="text/javascript" src="leilao/assets/js/angular-datepicker.js"></script>
+			<!-- <script type="text/javascript" src="leilao/assets/js/index.js"></script> -->
+
+			<!-- Angular-Bootstrap UI v2.5.0 -->
+			<script src="leilao/assets/js/angularUI/ui-bootstrap-tpls-2.5.0.js" type="application/javascript"></script>
+
+			<!-- dirPagination -->
+			<script src="leilao/assets/js/dirPagination/dirPagination.js" type="application/javascript"></script>
+
+			<!-- UI-MASK -->
+			<script src="leilao/assets/js/uiMask/ui-mask.js" type="application/javascript"></script>
+
+			<!-- Not minified, version 1.5.5 -->
+			<script src="leilao/assets/js/angular/angular-cookies.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/angular/angular-cookies.min.js" type="application/javascript"></script>
+			<!-- Minified, version 1.5.5 -->
+
+			<!-- Angular Timer v1.3.5 -->
+			<script src="leilao/assets/js/angular-timer-master/dist/assets/js/angular-timer-all.min.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/angular-timer-master/bower_components/momentjs/min/moment-with-locales.min.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/angular-timer-master/bower_components/humanize-duration/humanize-duration.js" type="application/javascript"></script>
+
+			<!-- ngStorage -->
+			<script src="leilao/assets/js/ngStorage/ngStorage.js" type="application/javascript"></script>
+
+			<!-- ngFileUpload -->
+			<script src="leilao/assets/js/ngFileUpload/dist/ng-file-upload.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/ngFileUpload/dist/ng-file-upload-shim.js" type="application/javascript"></script> <!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+
+			<!-- Angular File Saver -->
+			<script src="leilao/assets/js/angularFileSaver/dist/angular-file-saver.min.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/angularFileSaver/Blob/Blob.js" type="application/javascript"></script> <!-- Dependência para o Angular File Saver -->
+			<script src="leilao/assets/js/angularFileSaver/FileSaver/FileSaver.min.js" type="application/javascript"></script> <!-- Dependência para o Angular File Saver -->
+
+			<!-- jsonExportExcel -->
+			<script src="leilao/assets/js/jsonExportExcel/dest/json-export-excel.min.js" type="application/javascript"></script>
+
+
+			<!-- Custom JS files -->
+			<script src="leilao/assets/js/validation.js" type="application/javascript"></script>
+
+			<!-- Source Angular App -->
+			<script src="leilao/assets/js/app.js" type="application/javascript"></script>
+
+
+			<!-- Route -->
+			<script src="leilao/assets/js/routes/route.js" type="application/javascript"></script>
+
+			<!-- Controller
+				<script src="leilao/assets/js/controllers/leilaoController.js" type="application/javascript"></script>
+				<script src="leilao/assets/js/controllers/produtoController.js" type="application/javascript"></script>
+			-->
+			<script src="leilao/assets/js/controllers/appController.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/controllers/administradorController.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/controllers/loginController.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/controllers/usuarioController.js" type="application/javascript"></script>
+
+
+			<!-- Providers -->
+			<script src="leilao/assets/js/providers/appProviders.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/providers/accessFactory.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/providers/deleterFactory.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/providers/listFactory.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/providers/registerFactory.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/providers/reseterFactory.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/providers/updaterFactory.js" type="application/javascript"></script>
+
+			<!-- Services -->
+			<script src="leilao/assets/js/services/appServices.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/services/fileUpload.js" type="application/javascript"></script>
+
+			<!-- Directives -->
+			<!-- <script src="leilao/assets/js/directives/fileModelDirective.js" type="application/javascript"></script> -->
+
+			<script src="leilao/assets/js/directives/appDirectives.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminAtualizarProdutoDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminAtualizarLeilaoDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminUnidadesDesativadasDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminAtualizarUnidadeDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminAtualizarUsuarioDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminCadastrarProdutoDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminCadastrarUnidadeDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminCadastrarUsuarioDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminDesativarProdutoDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminDesativarUnidadeDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminDesativarUsuarioDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminFileModelDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminHomeDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminIniciarLeilaoDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminLeilaoFinalizadoDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminListaProdutoDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminListaUsuarioDesativadoDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminListaProdutoDesativadoDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminListaUsuarioDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminListaUsuarioEsperaDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminParametroDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/adminPerfilDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/loginCadastrarUsuarioDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/loginRecuperarAcessoUsuarioDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/userPerfilDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/userComprasDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/userHomeDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/userProximosLeiloesDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/userUltimosLeiloesDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/fileModelDirective.js" type="application/javascript"></script>
+			<script src="leilao/assets/js/directives/fileSelect.js" type="application/javascript"></script>
+
+			<!-- Include all compiled plugins (below), or include individual files as needed -->
+		  <script src="leilao/assets/css/bootstrap/dist/js/bootstrap.min.js" type="application/javascript"></script>
+
+			<!--[if lt IE 9]>
+				<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+				<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+				<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<![endif]-->
+		</footer>
+  </body>
+</html>

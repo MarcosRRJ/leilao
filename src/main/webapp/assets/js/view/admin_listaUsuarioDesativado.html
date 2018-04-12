@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <div class="col-sm-9  col-md-10  main">
+    <h1 class="page-header"> Lista de Usuários Desativados</h1>
+  </div>
+  <div class="col-sm-9 col-md-10 main">
+    <div id="imaginary_container">
+      <div class="input-group stylish-input-group">
+        <input type="search" name="s" class="search-field form-control" placeholder="Pesquisar Usuário Desativado" ng-model="searchUserDisabled" style="border-right:0; box-shadow:0 0 0; border-color:#ccc;">
+        <span class="input-group-addon" style="background: white !important; ">
+          <button type="submit" style=" border:0; background:transparent;">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="reativarUsuario">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h2 class="modal-title"> Reativar Usuário </h2>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="text-center">
+              <p> Usuário reativado com sucesso. </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                <span aria-hidden="true"> Fechar </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="col-sm-9  col-md-10  main">
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th>NetID</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Email</th>
+            <th> CPF </th>
+            <th>Unidade</th>
+            <th>Reativar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr dir-paginate="disabledUser in Administrador.usuariosDesativados | filter:searchUserDisabled | itemsPerPage:5" pagination-id="desativado">
+            <td> {{disabledUser.netId}} </td>
+            <td> {{disabledUser.nome}} </td>
+            <td> {{disabledUser.sobrenome}} </td>
+            <td> {{disabledUser.email}} </td>
+            <td> {{disabledUser.cpf}} </td>
+            <td> {{disabledUser.unidadeId.unidadeNome}} </td>
+            <td>
+              <button type="submit" class="btn btn-default" data-ng-click="Administrador.ativarUsuarioDesativado(disabledUser)">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px;"> </span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <ul class="pagination">
+          <dir-pagination-controls pagination-id="desativado" max-size="5" boundary-links="true"></dir-pagination-controls>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

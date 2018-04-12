@@ -1,0 +1,62 @@
+<div id="editarProduto">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"> Editar Produto </h2>
+      </div>
+      <div class="modal-body">
+        <!-- <div class="w3-content">
+          <div class="w3-row w3-margin"> -->
+            <form name="editarProduto" data-ng-submit="Administrador.atualizarProduto(Administrador.formulario)">
+              <div class="form-group">
+                <input type="hidden" class="form-control" id="registerID" data-ng-model="Administrador.formulario.idProduto" disabled>
+                <input type = "file" id="file" name="file" file-model="Administrador.formulario.file" accept="image/*" />
+                <label> Nome: </label>
+                <input type="name" class="form-control" maxlength="50" id="nomeProduto" data-ng-model="Administrador.formulario.nomeProduto" ng-required="true">
+                <label> Descrição: </label>
+                <textarea rows="2" cols="40" class="form-control" id="descricao" title="Descrição do produto é obrigatória."  maxlength="500" ng-required="true" data-ng-model="Administrador.formulario.descricao"></textarea>
+                <!-- <input type="text" class="form-control" maxlength="500" id="descricao" data-ng-model="Administrador.formulario.descricao"> -->
+                <label> N° de Patrimonio: </label>
+                <input type="text" class="form-control" maxlength="100" id="patrimonio" data-ng-model="Administrador.formulario.codPatrimonio" ng-required="true">
+              </div>
+              <div class="form-inline">
+                <label> Valor Inicial: </label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon" style=" padding-left: 5px; padding-right: 5px;">R$</div>
+                  <input type="number" min="1" max="99999" class="form-control" style="width: 100px;padding-left: 10px;padding-right: 10px;" data-ng-model="Administrador.formulario.valorInicial" ng-required="true">
+                </div>
+                <label> Valor por Lance: </label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon" style=" padding-left: 5px; padding-right: 5px;">R$</div>
+                  <input type="number" min="1" max="99999" class="form-control" id="inlineFormInputGroup" style="width: 100px;padding-left: 10px;padding-right: 10px;" data-ng-model="Administrador.formulario.valorPorLance" ng-required="true">
+                </div>
+              </div>
+              <div class="form-group">
+                <label> Unidade: </label>
+                <!--
+                  <p>selected item is : {{Administrador.produto.unidade.unidadeId}}</p>
+                -->
+                <!-- <select ng-model="Administrador.formulario.unidadeId" ng-options="item as item.unidadeNome for item in Administrador.unidades"></select> -->
+                <pre>{{Administrador.formulario.unidadeId.unidadeNome}}</pre>
+                <select class="form-control" id="unidade"  data-ng-model="Administrador.formulario.unidadeId" ng-required="true" >
+                 <option ng-repeat="unidade in Administrador.unidades" value="{{unidade.unidadeId}}" placeholder="Administrador.formulario.unidadeId.unidadeNome">{{unidade.unidadeNome}}</option>
+                </select>
+                  <p class="alert">{{mensagemProdutoEdit}}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-left" data-ng-click="Administrador.desativarProduto(Administrador.formulario)">
+                  <span aria-hidden="true"> Desativar </span>
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                  <span aria-hidden="true">Cancelar</span>
+                </button>
+                <input type="submit" id="editarProdutoSubmit" value="Confirmar" class="btn btn-success"></input>
+              </div>
+            </form>
+          <!-- </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

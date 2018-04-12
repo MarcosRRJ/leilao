@@ -1,0 +1,125 @@
+<header>
+  <nav class="col-sm-12 navbar-fixed-top hidden-xs" >
+    <div class="container-fluid">
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a data-target="#perfil" data-toggle="modal"> Perfil </a></li>
+          <li><a href="leilao/"> Sair </a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <nav class="col-sm-12  col-md-12 col-md-offset-10 navbar-fixed-top visible-xs">
+    <div id="navbar" class="navbar-header">
+      <div class="col-sm-2 main">
+        <form class="form-inline">
+          <button type="button" class="btn btn-default" style="border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px;">
+            <a data-target="#perfil" data-toggle="modal"> Perfil </a></li>
+          </button>
+          <button class="btn btn-default" type="button" style="border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px;">
+              <a href="leilao/"> Sair </a></li>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="col-sm-12 col-md-12 col-md-offset-0 main">
+    <div style="margin-bottom: 5px; position:relative;">
+      <div style="margin-bottom: 10px;">
+        <img src="leilao/assets/img/logo.png" alt="" class="logo">
+      </div>
+      <div class="cabecalho">
+        <h1 class="titulo"> Leilão </h1>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="navigation navigation-landscape visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="col-sm-2 main">
+        <button type="button" class="btn btn-primary"  data-toggle="collapse" data-target="#myNavbar" aria-controls="navbar" aria-expanded="true">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span aria-hidden="true"> Menu </span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="nav-toggle"></div>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav nav-pills nav-stacked" role="navlist">
+        <li>
+          <a data-target="#userHome" data-toggle="tab" ng-click="Usuario.activeMenu('Home')" ><span class="glyphicon glyphicon-home" class="sr-only" aria-hidden="true"></span> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li>
+          <a data-target="#"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Leilões </a>
+          <ol><a data-target="#proximosLeiloes" data-toggle="tab" ng-click="Usuario.activeMenu('Próximos Leilões')"> Próximos Leilões </a></ol>
+          <ol><a data-target="#ultimosLeiloes" data-toggle="tab" ng-click="Usuario.activeMenu('Últimos Leilões')"> Últimos Leilões </a></ol>
+        </li>
+        <li>
+          <a data-target="#userCompras" data-toggle="tab" ng-click="Usuario.activeMenu('Minha Compras')"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Minhas Compras </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+   <div class="row content">
+    <div class="col-sm-2 sidenav hidden-xs" style="margin-top: 10px;">
+      <ul class="nav nav-pills nav-stacked"  role="navlist">
+        <li>
+          <a data-target="#userHome" data-toggle="tab" ng-click="Usuario.activeMenu('Home')" ><span class="glyphicon glyphicon-home" class="sr-only" aria-hidden="true"></span> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li>
+          <a data-target="#"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Leilões </a>
+          <ol><a data-target="#proximosLeiloes" data-toggle="tab" ng-click="Usuario.activeMenu('Próximos Leilões')"> Próximos Leilões </a></ol>
+          <ol><a data-target="#ultimosLeiloes" data-toggle="tab" ng-click="Usuario.activeMenu('Últimos Leilões')"> Últimos Leilões </a></ol>
+        </li>
+        <li>
+          <a data-target="#userCompras" data-toggle="tab" ng-click="Usuario.activeMenu('Minha Compras')"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Minhas Compras </a>
+        </li>
+      </ul>
+    </div>
+    <div class="modal fade" id="perfil">
+      <user-perfil></user-peril>
+    </div>
+    <div class="tab-content clearfix">
+      <div  ng-if="Usuario.mActiveMenu == 'Home'" id="userHome">
+        <user-home></user-home>
+      </div>
+      <div  ng-if="Usuario.mActiveMenu == 'Últimos Leilões'"  id="ultimosLeiloes">
+        <ultimos-leiloes></ultimos-leiloes>
+      </div>
+      <div  ng-if="Usuario.mActiveMenu == 'Próximos Leilões'"  id="proximosLeiloes">
+        <proximos-leiloes></proximos-leiloes>
+      </div>
+      <div  ng-if="Usuario.mActiveMenu == 'Minha Compras'"  id="userCompras">
+        <user-compras></user-compras>
+      </div>
+    </div>
+    <div class="modal fade" id="SenhaAlteradasucesso">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h2 class="modal-title"> Alterar Senha </h2>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="text-center">
+                <p> Senha Alterada com sucesso. </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                  <span aria-hidden="true"> Fechar </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

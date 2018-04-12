@@ -1,0 +1,17 @@
+[{
+  "nome" : "Moleque",
+  "sobrenome" : "Transante",
+  "email" : "mlktransante@gft.com",
+  "netid" : "mlkt",
+  "cpf" : "230.558.698-44",
+  "unidade" : "3",
+  "senha" : "yabadabaduh"
+}, {
+  "nome" : "Sabado",
+  "sobrenome" : "No Parque",
+  "email" : "sbdpark@gft.com",
+  "netid" : "sabp",
+  "cpf" : "580.679.628-53",
+  "unidade" : "1",
+  "senha" : "yabadabaduh"
+}]

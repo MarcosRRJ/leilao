@@ -1,0 +1,56 @@
+<div id="editarUsuario">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"> Editar Usuário </h2>
+      </div>
+      <div class="modal-body">
+        <form name="editarUsuario" data-ng-submit="Administrador.atualizarUsuario(Administrador.form)">
+          <div class="form-group">
+            <input type="hidden" class="form-control" id="registerID" data-ng-model="Administrador.form.id_usuario" disabled>
+            <label> Nome: </label>
+            <input type="text" class="form-control" maxlength="30" id="registerName" ng-required="true" data-ng-model="Administrador.form.nome">
+            <label> Sobrenome: </label>
+            <input type="text" class="form-control" maxlength="30" id="registerLastName" ng-required="true" data-ng-model="Administrador.form.sobrenome">
+          </div>
+          <div class="form-group">
+            <label> E-Mail: </label>
+            <input type="email" class="form-control" maxlength="60" id="registerEmail" ng-required="true" data-ng-model="Administrador.form.email">
+            <label> NetID: </label>
+            <input type="text" class="form-control" maxlength="6" id="registerNetID" ng-required="true" data-ng-model="Administrador.form.netId">
+            <label> CPF: </label>
+            <input type="text" class="form-control" id="registerCPF" maxlength="14" ui-mask="999.999.999-99" data-ng-pattern="/[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}/" ng-required="true" data-ng-model="Administrador.form.cpf">
+          </div>
+          <div class="form-group">
+            <label> Unidade:  </label>
+            <!--
+              Forma de Debugar o ID selecionado.
+              <p>selected item is : {{Administrador.form.unidade.unidadeId}}</p>
+            -->
+            <pre>{{Administrador.form.unidadeId.unidadeNome}}</pre>            
+            <select class="form-control" id="unidade" ng-required="true" data-ng-model="Administrador.form.unidadeId">
+             <option ng-repeat="unidade in Administrador.unidades" value="{{unidade.unidadeId}}">{{unidade.unidadeNome}}</option>
+            </select>
+          </div>
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger pull-left" data-ng-click="Administrador.desativarUsuario(Administrador.form)">
+              <span aria-hidden="true"> Desativar </span>
+            </button>
+
+            <button type="button" class="btn btn-warning pull-left" data-ng-click="Administrador.redefinirSenha(Administrador.form)">
+              <span aria-hidden="true"> Resetar Senha </span>
+            </button>
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              <span aria-hidden="true"> Cancelar </span>
+            </button>
+            <input type="submit" id="editarUsuarioSubmit" value="Confirmar" class="btn btn-success">  </input>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

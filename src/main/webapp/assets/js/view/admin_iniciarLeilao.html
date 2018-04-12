@@ -1,0 +1,490 @@
+<div class="container-fluid">
+  <div class="col-sm-9 col-md-10 main">
+    <h1 class="page-header"> Iniciar Leilão </h1>
+  </div>
+  <div class="col-sm-9 col-md-10 main">
+    <div id="imaginary_container">
+      <div class="input-group stylish-input-group">
+        <!-- <input type="text" class="form-control"  placeholder="Pesquisar Leilão" style="border-right:0; box-shadow:0 0 0; border-color:#ccc;"> -->
+        <input type="search" name="s" class="search-field form-control" placeholder="Pesquisar Leilão" ng-model="searchAuction" style="border-right:0; box-shadow:0 0 0; border-color:#ccc;">
+        <span class="input-group-addon" style="background: white !important; ">
+          <button type="submit" style=" border:0; background:transparent;">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9 col-md-10 main">
+    <button type="button" class="pull-left btn btn-success" data-toggle="modal" data-target="#leiloesAgendados">
+      <span aria-hidden="true"> Leilões Agendados </span>
+    </button>
+    <button type="button" class="pull-right btn btn-success" data-toggle="modal" data-target="#iniciarLeiloes" data-ng-click="Administrador.checkAllLeilao()">
+      <span aria-hidden="true"> Iniciar Leilão </span>
+    </button>
+  </div>
+    <div id="leiloesAgendados" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg" tabindex="-10" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="max-width: 1000px; margin-top: 64.875px;">
+  			<div class="modal-content">
+  				<div class="modal-header">
+  					<button type="button" class="close" data-dismiss="modal">×</button>
+  					<h4 class="modal-title"> Leilões Agendados </h4>
+  				</div>
+  				<div class="modal-body table-responsive">
+            <table class="table table-striped" >
+              <thead>
+                <tr>
+                  <th> Foto </th>
+                  <th> Nome </th>
+                  <th> Descrição </th>
+                  <th> № Patrimônio </th>
+                  <th> Unidade </th>
+                  <th> Valor Inicial </th>
+                  <th> Data Início </th>
+                  <th> Data Fim </th>
+                  <th>Editar</th>
+                  <th>Desativar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-ng-repeat="scheduledAuction in Administrador.leiloesAgendados">
+                  <td> <img class="d-flex mr-3" ng-src="leilao/{{scheduledAuction.idProduto.imagemPath}}" alt="Generic placeholder image" style="float: left; height: 70px; width: 70px;"> </td>
+                  <td>
+                    <div ng-init="limit1 = 15; moreShown1 = false">
+                        {{scheduledAuction.idProduto.nomeProduto | limitTo: limit1}}{{scheduledAuction.idProduto.nomeProduto.length > limit1 ? '' : ''}}
+                        <a ng-show="scheduledAuction.idProduto.nomeProduto.length > limit1"
+                          href ng-click="limit1=scheduledAuction.idProduto.nomeProduto.length; moreShown1 = true">  ver mais
+                        </a>
+                        <a ng-show="moreShown1" href ng-click="limit1=15; moreShown1 = false"> ver menos </a>
+                    </div>
+                  </td>
+                  <!-- <td> {{scheduledAuction.idProduto.nomeProduto}} </td> -->
+                  <td>
+                    <div ng-init="limit = 12; moreShown = false">
+                        {{scheduledAuction.idProduto.descricao | limitTo: limit}}{{scheduledAuction.idProduto.descricao.length > limit ? '' : ''}}
+                        <a ng-show="scheduledAuction.idProduto.descricao.length > limit"
+                          href ng-click="limit=scheduledAuction.idProduto.descricao.length; moreShown = true">  ver mais
+                        </a>
+                        <a ng-show="moreShown" href ng-click="limit=12; moreShown = false"> ver menos </a>
+                    </div>
+                  </td>
+                  <td>
+                    <div ng-init="limit2 = 13; moreShown4 = false">
+                        {{scheduledAuction.idProduto.codPatrimonio | limitTo: limit2}}{{scheduledAuction.idProduto.codPatrimonio.length > limit2 ? '' : ''}}
+                        <a ng-show="scheduledAuction.idProduto.codPatrimonio.length > limit2"
+                          href ng-click="limit2=scheduledAuction.idProduto.codPatrimonio.length; moreShown4 = true">  ver mais
+                        </a>
+                        <a ng-show="moreShown4" href ng-click="limit2=13; moreShown4 = false"> ver menos </a>
+                    </div>
+                  </td>
+                  <td> {{scheduledAuction.idProduto.unidadeId.unidadeNome}} </td>
+                  <td> {{scheduledAuction.idProduto.valorInicial | currency:'R$ '}} </td>
+                  <td> {{scheduledAuction.dataInicio | date : "dd/MM/yyyy HH:mm:ss"}} </td>
+                  <td> {{scheduledAuction.dataFimLeilao | date : "dd/MM/yyyy HH:mm:ss"}} </td>
+                  <td>
+                  <button type="submit" class="btn btn-default" data-target="#editarLeilao" data-ng-click="Administrador.editarLeilao(scheduledAuction)">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span>
+                  </button>
+                  </td>
+                  <td>
+                  <button type="submit" class="btn btn-default" data-ng-click="Administrador.updateDesativaLeilao(scheduledAuction)">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
+                  </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+  				</div>
+  				<div class="modal-footer">
+  					<button type="button" class="btn btn-default" data-dismiss="modal">
+  						<span aria-hidden="true"> Fechar </span>
+  					</button>
+  				</div>
+        </div>
+  		</div>
+  	</div>
+    <div class="modal fade"  data-dismiss="modal" id="editarLeilao">
+      <atualizar-leilao></atualizar-leilao>
+    </div>
+      <div id="iniciarLeiloes" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" tabindex="-10" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="max-width: 1000px; margin-top: 64.875px;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h4 class="modal-title"> Iniciar Leilão </h4>
+            </div>
+            <div class="modal-body table-responsive">
+              <p class="text-center"> Você selecionou {{Administrador.countPlaylistLeilao}} produtos. </p>
+              <label for="">Duração dos Leilões</label>
+              <input class="form-control btn-block" type="text" style="width: 65px;" ui-mask="99:99" data-ng-pattern="/[0-3]{2}[:][0-9]{2}/" data-ng-model="Administrador.duracaoLeiloes" >
+              <table class="table table-striped" >
+                <thead>
+                  <tr>
+                    <th> Foto </th>
+                    <th> Nome </th>
+                    <th> Descrição </th>
+                    <th> № Patrimônio </th>
+                    <th> Unidade </th>
+                    <th> Valor Inicial </th>
+                    <th> Duração </th>
+                    <th> Data Início </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-ng-repeat="listLeilao in Administrador.playListLeilao">
+                    <td> <img class="d-flex mr-3" ng-src="leilao/{{listLeilao.imagemPath}}" alt="Generic placeholder image" style="float: left; height: 70px; width: 70px;"> </td>
+                    <td> {{listLeilao.nomeProduto}} </td>
+                    <td> {{listLeilao.descricao}} </td>
+                    <td> {{listLeilao.codPatrimonio}} </td>
+                    <td> {{listLeilao.unidadeId.unidadeNome}} </td>
+                    <td> {{listLeilao.valorInicial | currency:'R$ '}} </td>
+                    <td ng-if="listLeilao.duracao > 0"> {{listLeilao.duracao.substr(0, 2)}}:{{listLeilao.duracao.substr(2, 2)}}</td>
+                    <td ng-if="listLeilao.duracao == undefined || listLeilao.duracao == ''"> </td>
+                    <td ng-if="listLeilao.dataInicio != undefined && listLeilao.hora != undefined"> {{ listLeilao.dataInicio | date: 'dd/MM/yyyy' }} {{listLeilao.hora.substr(0, 2)}}:{{listLeilao.hora.substr(2, 2)}}</td>
+                    <td ng-if="listLeilao.dataInicio == undefined || listLeilao.hora == undefined"></td>
+                 </tr>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                <span aria-hidden="true">Cancelar</span>
+              </button>
+              <button type="button" class="btn btn-success" data-dismiss="modal" data-ng-click="Administrador.ativarTodosLeiloesCheck()">
+                <span aria-hidden="true">Confirmar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="iniciarLeilaoSucesso">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title">Registrar Leilão </h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p>  Leilão Registrado sucesso. </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button"  autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="iniciarLeilaoError">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Registrar Leilão</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p>  Não foi possível Registrar Leilão, A duração é obrigatoria </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="iniciarLeilaoError2">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Registrar Leilão</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p> Não foi possível Agendar o Leilão, A Data do Leilão tem que seguir um padrão,</p>
+                  <p align="center"> ex: 2017-12-12 15:00:00</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="iniciarLeilaoError3">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Registrar Leilão</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p> Não foi possível Agendar o Leilão, A Data do Leilão precisa ser maior que a data atual</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="iniciarLeilaoError4">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Registrar Leilão</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p> Número de Leiões com essa Data maior que o parâmetro estabelecido</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="iniciarLeilaoError5">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Registrar Leilão</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p>  Não foi possível realizar a ação, Você deve preencher o campo data e hora para Agendar o leilão </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="alterarLeilaoError">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Alterar Leilão</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p>  Não foi possível Alterar Leilão Agendado, A duração é obrigatoria </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="alterarLeilaoError2">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Alterar Leilão</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p>  Não foi possível Alterar o Leilão Agendado, A Data do Leilão tem que seguir um padrão, ex: 2017-12-12 15:00:00 ou precisa ser maior que a data atual</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="alterarLeilaoError3">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Alterar Leilão</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p> Não foi possível Alterar o Leilão, A Data do Leilão precisa ser maior que a data atual</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="alterarLeilaoError4">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Alterar Leilão</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p> Não foi possível efetuar acão, Número de Leiões com essa Data maior que o parâmetro estabelecido</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="desativaLeilaoAgendado">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Desativar Leilão </h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p>  Leilão Desativado sucesso. O produto voltou para a lista </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button"  autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="alterarLeilaoAgendado">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Alterar Leilão </h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p>  Leilão Alterado sucesso. </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button"  autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  <div class="container-fluid">
+    <div class="col-sm-9 col-md-10 main">
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th></th>
+            <th> Imagem </th>
+            <th> Nome </th>
+            <th> Descrição </th>
+            <th> Duração </th>
+            <th> Unidade </th>
+            <th> № Patrimônio </th>
+            <th> Valor Inicial </th>
+            <th> Data </th>
+            <th> Hora </th>
+            <th> Iniciar </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr dir-paginate="product in Administrador.produtos | filter:searchAuction | itemsPerPage:5" pagination-id="leilao">
+            <td>
+            <label>
+                <input type="checkbox" name="{{product.idProduto}}" id="{{product.idProduto}}" ng-model="product.checked" ng-change="Administrador.selectedLeilao()">
+            </label>
+            </td>
+            <td> <img class="d-flex mr-3" ng-src="leilao/{{product.imagemPath}}" alt="Generic placeholder image" style="float: left; height: 70px; width: 70px;"> </td>
+            <td> {{product.nomeProduto}} </td>
+            <td style="width: 500px;">
+              <div ng-init="limit = 58; moreShown = false" >
+                  {{product.descricao | limitTo: limit}}{{product.descricao.length > limit ? '...' : ''}}
+                  <a ng-show="product.descricao.length > limit"
+                    href ng-click="limit=product.descricao.length; moreShown = true">  ver mais
+                  </a>
+                  <a ng-show="moreShown" href ng-click="limit=58; moreShown = false"> ver menos </a>
+              </div>
+            </td>
+            <td><input class="form-control btn-block" type="text" style="width: 65px;" ui-mask="99:99" data-ng-pattern="/[0-9]{2}[:][0-9]{2}/" data-ng-model="product.duracao" ></td>
+            <!-- <td> <input class="form-control btn-block" type="text" id="disabledInput" style="width: 65px;" placeholder="99:99" data-ng-minlength="5" data-ng-maxlength="5" ng-required="true"  data-ng-model="product.duracao" > </td> -->
+            <td> {{product.unidadeId.unidadeNome}} </td>
+            <td> {{product.codPatrimonio}} </td>
+            <td> {{product.valorInicial | currency:'R$ '}} </td>
+            <td>
+              <div datepicker datepicker-class="test-custom-class" date-format="yyyy-MM-dd" >
+                <input  datetime-picker date-format="yyyy-MM-dd HH:mm:ss" type="text" class="angular-datepicker-input" style="width: 112px;" data-ng-model="product.dataInicio">
+              </div>
+              <!-- <input class="form-control btn-block" type="text" id="data" style="width: 175px;" placeholder="YYYY-MM-DD 99:99:99" ui-mask="9999-99-99 99:99:99" data-ng-pattern="/[0-9]{4}[-][0-9]{2}[-][0-9]{2}[ ][0-9]{2}[:][0-9]{2}[:][0-9]{2}/" data-ng-model="product.dataInicio"/>  -->
+            </td>
+            <td><input class="form-control btn-block" type="text" style="width: 65px;" ui-mask="99:99" data-ng-pattern="/[0-9]{2}[:][0-9]{2}/" data-ng-model="product.hora" ></td>
+            <!-- <td> <input class="form-control btn-block" type="text" id="data" style="width: 175px;" placeholder="YYYY-MM-DD 99:99:99" ui-mask="9999:99:99 99:99:99" data-ng-pattern="/[0-9]{4}[-][0-9]{2}[:][0-9]{2}[:][0-9]{2}/" data-ng-model="product.dataInicio"/> </td> -->
+            <td>
+              <button type="submit" class="btn btn-default" data-ng-click="Administrador.iniciarLeilao(product)">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 13px;"> </span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <ul class="pagination">
+          <dir-pagination-controls pagination-id="leilao" max-size="5" boundary-links="true"></dir-pagination-controls>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

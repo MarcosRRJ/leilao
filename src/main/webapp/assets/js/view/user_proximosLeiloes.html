@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="col-sm-9 col-md-10 main">
+    <h1 class="page-header"> Próximos Leilões </h1>
+  </div>
+  <div>
+    <div class="col-sm-9 col-md-10 main" ng-if="Usuario.leiloesAgendadosUsuario==false">
+      <p>Não há nenhum Leilão Agendado</p>
+    </div>
+    <div class="container">
+      <div class="col-sm-10 col-md-10">
+        <div class="row">
+          <div class="col-sm-5 col-md-3" layout="row" flex="25"data-ng-repeat="scheduledAuctionUsuario in Usuario.leiloesAgendadosUsuario">
+            <div class="thumbnail" style="height: 590px;">
+              <a href="http://bid.gft.com/leilao/{{scheduledAuctionUsuario.idProduto.imagemPath}}" onclick="return hs.expand(this,
+            {wrapperClassName: 'borderless floating-caption', dimmingOpacity: 0.75, align: 'center'})">
+                <img ng-src="leilao/{{scheduledAuctionUsuario.idProduto.imagemPath}}" alt="Imagem do Produto" style="max-width:100%;width: 215px;height: 180px;">
+              </a>
+              <div class="text-center">
+                <div ng-init="limit2 = 15; moreShown4 = false">
+                  <p><strong>{{scheduledAuctionUsuario.idProduto.nomeProduto | limitTo: limit2}}{{scheduledAuctionUsuario.idProduto.nomeProduto.length > limit2 ? '...' : ''}}</strong>
+                  <a ng-show="scheduledAuctionUsuario.idProduto.nomeProduto.length > limit2"
+                    href ng-click="limit2=scheduledAuctionUsuario.idProduto.nomeProduto.length; moreShown4 = true">  ver mais
+                  </a>
+                  <a ng-show="moreShown4" href ng-click="limit2=15; moreShown4 = false"> ver menos </a>
+                  </p>
+                </div>
+                <div class="text-left">
+                  <simple-format style="white-space: pre-wrap;">{{scheduledAuctionUsuario.idProduto.descricao}}</simple-format>
+                </div>
+                <hr class="col-xs-10"></hr>
+                <p> Data de Início: <strong> {{scheduledAuctionUsuario.dataInicio | date : "dd/MM/yyyy HH:mm:ss"}} </strong> </p>
+                <p> Este produto pertence à unidade de <span style="color: red; text-transform: uppercase;"> <strong> {{scheduledAuctionUsuario.idProduto.unidadeId.unidadeNome}} </strong> </span></p>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

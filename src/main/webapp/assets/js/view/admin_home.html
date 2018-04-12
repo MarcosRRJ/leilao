@@ -1,0 +1,157 @@
+<div class="container-fluid">
+    <div class="col-sm-9  col-md-10 main">
+  		<h1 class="page-header"> Home </h1>
+  	</div>
+    <div>
+      <div class="col-sm-9 col-md-10" ng-if="Administrador.leiloes==false">
+        <p>Não há nenhum Leilão em Andamento</p>
+      </div>
+      <div class="container">
+        <div class="col-sm-10 col-md-10 ">
+          <div class="row">
+            <div class="col-sm-5 col-md-3" data-ng-repeat="auction in Administrador.leiloes">
+
+              <div class="thumbnail" style="height: 700px;">
+                <a href="http://bid.gft.com/leilao/{{auction.idProduto.imagemPath}}" onclick="return hs.expand(this,
+              {wrapperClassName: 'borderless floating-caption', dimmingOpacity: 0.75, align: 'center'})">
+                  <img ng-src="leilao/{{auction.idProduto.imagemPath}}" alt="Imagem do Produto" style="max-width:100%;width: 215px;height: 180px;">
+                </a>
+                <div class="text-center">
+                  <div>
+                    <div data-ng-repeat="userPegou in Administrador.pegou">
+                      <p [ngSwitch]="(auction.idLeilao == userPegou.idLeilao)">
+                        <div ng-if="auction.idLeilao == userPegou.idLeilao">
+                          <h1> <timer end-time="userPegou.dataFimLeilao" max-time-unit="'hour'" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}}</timer> </h1>
+                        </div>
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div data-ng-repeat="userPegou in Administrador.pegou">
+                      <p [ngSwitch]="(auction.idLeilao == userPegou.idLeilao)">
+                        <div ng-if="auction.idLeilao == userPegou.idLeilao">
+                          <p> Lance Atual: <strong> {{userPegou.valorAtual | currency:'R$ ' }} </strong> </p>
+                          <p class="text-center" ng-if="userPegou.idUsuario.nome!==undefined"> Lance efetuado por: <strong>{{userPegou.idUsuario.nome}} {{userPegou.idUsuario.sobrenome}}</strong></p>
+                          <p class="text-center" ng-if="userPegou.idUsuario.nome==undefined"> Lance Inicial do Leilão,<strong> niguém deu lance ainda</strong></p>
+                        </div>
+                      </p>
+                    </div>
+                  </div>
+                  <p> Este produto pertence à unidade de <span style="color: red; text-transform: uppercase;"> <strong> {{auction.idProduto.unidadeId.unidadeNome}} </strong> </span></p>
+                  <div class="col-xs-12"><hr style=" margin-top: 0px; margin-bottom: 0px;"></hr></div>
+                  <div ng-init="limit2 = 15; moreShown4 = false">
+                    <h3 style="margin-bottom: 0px;">{{auction.idProduto.nomeProduto | limitTo: limit2}}{{auction.idProduto.nomeProduto.length > limit2 ? '' : ''}}</h3>
+                    <a ng-show="auction.idProduto.nomeProduto.length > limit2"
+                      href ng-click="limit2=auction.idProduto.nomeProduto.length; moreShown4 = true">  ver mais
+                    </a>
+                    <a ng-show="moreShown4" href ng-click="limit2=15; moreShown4 = false"> ver menos </a>
+                  </div>
+                  <div class="text-left">
+                    <simple-format style="white-space: pre-wrap;">{{auction.idProduto.descricao}}</simple-format>
+                  </div>
+                  <hr class="col-xs-10"></hr>
+                    <button type="submit" id="bias" data-toggle="modal" data-target="#desativarLeilao" class="btn btn-danger" data-ng-click="Administrador.desativarLeilao(auction)">
+                    Desativar Leilão
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="desativaLeilaoAndamento">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h2 class="modal-title"> Desativar Leilão </h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <p>  Leilão Desativado sucesso. O produto voltou para a lista </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button"  autofocus class="btn btn-default" data-dismiss="modal">
+                    <span aria-hidden="true"> Fechar </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="desativarLeilao">
+        <div class="modal-dialog modal-lg" tabindex="-10" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="max-width: 1000px; margin-top: 64.875px;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h4 class="modal-title">Tem certeza que deseja Desativar esse Leilão? </h4>
+            </div>
+            <div class="modal-body table-responsive">
+              <table class="table table-striped" >
+                <thead>
+                  <tr>
+                    <th> Foto </th>
+                    <th> Nome </th>
+                    <th> Descrição </th>
+                    <th> № Patrimônio </th>
+                    <th> Unidade </th>
+                    <th> Valor Inicial </th>
+                    <th> Data Início </th>
+                    <th> Data Fim </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td> <img class="d-flex mr-3" ng-src="leilao/{{Administrador.formularioDesativaLeilao.idProduto.imagemPath}}" alt="Generic placeholder image" style="float: left; height: 70px; width: 70px;"> </td>
+                    <td>
+                      <div ng-init="limit1 = 15; moreShown1 = false">
+                          {{Administrador.formularioDesativaLeilao.idProduto.nomeProduto | limitTo: limit1}}{{Administrador.formularioDesativaLeilao.idProduto.nomeProduto.length > limit1 ? '' : ''}}
+                          <a ng-show="Administrador.formularioDesativaLeilao.idProduto.nomeProduto.length > limit1"
+                            href ng-click="limit1=Administrador.formularioDesativaLeilao.idProduto.nomeProduto.length; moreShown1 = true">  ver mais
+                          </a>
+                          <a ng-show="moreShown1" href ng-click="limit1=15; moreShown1 = false"> ver menos </a>
+                      </div>
+                    </td>
+                    <!-- <td> {{Administrador.formularioDesativaLeilao.idProduto.nomeProduto}} </td> -->
+                    <td>
+                      <div ng-init="limit = 12; moreShown = false">
+                          {{Administrador.formularioDesativaLeilao.idProduto.descricao | limitTo: limit}}{{Administrador.formularioDesativaLeilao.idProduto.descricao.length > limit ? '' : ''}}
+                          <a ng-show="Administrador.formularioDesativaLeilao.idProduto.descricao.length > limit"
+                            href ng-click="limit=Administrador.formularioDesativaLeilao.idProduto.descricao.length; moreShown = true">  ver mais
+                          </a>
+                          <a ng-show="moreShown" href ng-click="limit=12; moreShown = false"> ver menos </a>
+                      </div>
+                    </td>
+                    <td>
+                      <div ng-init="limit2 = 13; moreShown4 = false">
+                          {{Administrador.formularioDesativaLeilao.idProduto.codPatrimonio | limitTo: limit2}}{{Administrador.formularioDesativaLeilao.idProduto.codPatrimonio.length > limit2 ? '' : ''}}
+                          <a ng-show="Administrador.formularioDesativaLeilao.idProduto.codPatrimonio.length > limit2"
+                            href ng-click="limit2=Administrador.formularioDesativaLeilao.idProduto.codPatrimonio.length; moreShown4 = true">  ver mais
+                          </a>
+                          <a ng-show="moreShown4" href ng-click="limit2=13; moreShown4 = false"> ver menos </a>
+                      </div>
+                    </td>
+                    <!-- <td> {{Administrador.formularioDesativaLeilao.idProduto.codPatrimonio}} </td> -->
+                    <td> {{Administrador.formularioDesativaLeilao.idProduto.unidadeId.unidadeNome}} </td>
+                    <td> {{Administrador.formularioDesativaLeilao.idProduto.valorInicial | currency:'R$ '}} </td>
+                    <td> {{Administrador.formularioDesativaLeilao.dataInicio | date : "dd/MM/yyyy HH:mm:ss"}} </td>
+                    <td> {{Administrador.formularioDesativaLeilao.dataFimLeilao | date : "dd/MM/yyyy HH:mm:ss"}} </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                <span aria-hidden="true"> Cancelar </span>
+              </button>
+              <input type="submit" id="btn_desativaLeilao" value="Confirmar" class="btn btn-success" data-close="modal" data-ng-click="Administrador.updateDesativaLeilao(Administrador.formularioDesativaLeilao)"></input>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

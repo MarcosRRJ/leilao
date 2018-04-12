@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="col-sm-9 col-md-10 main">
+    <h1 class="page-header"> Leilões Finalizados </h1>
+  </div>
+  <div class="col-sm-9 col-md-10 main">
+    <div id="imaginary_container">
+      <div class="input-group stylish-input-group">
+        <input type="search" name="s" class="search-field form-control" placeholder="Pesquisar Leilões Finalizados" ng-model="searchWinner" style="border-right:0; box-shadow:0 0 0; border-color:#ccc;">
+        <span class="input-group-addon" style="background: white !important; ">
+          <button type="submit" style=" border:0; background:transparent;">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9 col-md-10 main">
+    <button class="btn btn-success" data-ng-click="Administrador.downloadExcel(exceldatabase.xlsx)">
+      <span aria-hidden="true"> Exportar para o Excel </span>
+    </button>
+  </div>
+  <div class="container-fluid">
+    <div class="col-sm-9 col-md-10 main" id="exportable">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th> NetID </th>
+            <th> Ganhador </th>
+            <th> Unidade do Ganhador </th>
+            <th> Produto </th>
+            <th> Unidade do Produto </th>
+            <th> Cod-Patrimônio </th>
+            <th> Valor Arrematado </th>
+            <th> Data do Arremate </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr dir-paginate="winner in Administrador.leiloesArrematados | filter:searchWinner | itemsPerPage:10" pagination-id="arrematado">
+            <td> {{winner.netidGanhador}} </td>
+            <td> {{winner.nomeGanhador}} </td>
+            <td> {{winner.unidadeGanhador}} </td>
+            <td> {{winner.nomeProduto}} </td>
+            <td> {{winner.unidadeProduto}} </td>
+            <td> {{winner.npatrimonioProduto}} </td>
+            <td> {{winner.valorArrematado | currency:'R$ '}} </td>
+            <td> {{winner.dataArremate | date : "dd/MM/yyyy HH:mm:ss"}} </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <ul class="pagination">
+          <dir-pagination-controls pagination-id="arrematado" max-size="5" boundary-links="true"></dir-pagination-controls>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

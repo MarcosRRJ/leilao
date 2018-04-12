@@ -1,0 +1,57 @@
+#%RAML 1.0
+title: Leilao
+version: v1
+baseUri: /administrador
+
+#Produto
+
+/registrarProdutoRest:
+  post:
+    headers:
+      Content-Type:
+    body:
+      # multipart/form-data:
+        # imagemPath: Blob
+      application/json:
+          type: object
+          properties:
+            nomeProduto: string
+            descricao: string
+            codPatrimonio: string
+            unidadeId: integer
+            valorInicial: number
+            valorPorLance: number
+          example: |
+            {
+              "nomeProduto": "snoo",
+              "descricao": "P@ssW0rd",
+              "codPatrimonio": "1548AMDO",
+              "unidadeId": 1,
+              "valorInicial": 10.00,
+              "valorPorLance": 5.00
+            }
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+
+
+/listaTodasUnidade:
+  post:
+    headers:
+      Content-Type:
+    body:
+      application/json:
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              unidadeId: number
+              unidadeNome: string
+              situacao: number

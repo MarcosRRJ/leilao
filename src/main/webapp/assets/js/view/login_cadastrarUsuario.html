@@ -1,0 +1,47 @@
+<div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h2 class="modal-title"> Cadastro </h2>
+      </div>
+      <div class="modal-body" >
+        <form name="myForm" id="myForm" data-ng-pristine data-ng-submit="Login.cadastrarUsuario(Login.usuario)" accept-charset="utf-8">
+          <div class="form-group">
+            <label> Nome: </label>
+            <input type="text" class="form-control" maxlength="30" id="nome" title="Nome do usuário é obrigatório." ng-required="true" ng-model="Login.usuario.nome">
+            <label> Sobrenome: </label>
+            <input type="text" class="form-control" maxlength="30" id="sobrenome" title="Sobrenome do usuário é obrigatório." ng-required="true" ng-model="Login.usuario.sobrenome">
+          </div>
+          <div class="form-group">
+            <label> E-Mail: </label>
+            <input type="email" class="form-control" maxlength="60" id="email" title="E-mail do usuário é obrigatório." ng-required="true" ng-model="Login.usuario.email">
+            <label> NetID: </label>
+            <input type="text" class="form-control" id="netId" maxlength="6" title="NetID do usuário é obrigatório." ng-required="true" ng-model="Login.usuario.netId">
+            <label> CPF: </label>
+            <input type="text" class="form-control" id="cpf" maxlength="14" ui-mask="999.999.999-99" title="CPF do usuário é obrigatório." data-ng-pattern="/[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}/" ng-required="true" ng-model="Login.usuario.cpf">
+          </div>
+          <div class="form-group">
+            <label> Unidade:  </label>
+            <!--
+              <p>selected item is : {{Login.usuario.unidade.unidadeId}}</p>
+            -->
+            <select class="form-control" id="unidade" title="Unidade do usuário é obrigatória." ng-required="true" ng-model="Login.usuario.unidade.unidadeId">
+             <option ng-repeat="unidade in Login.unidades" value="{{unidade.unidadeId}}">{{unidade.unidadeNome}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label> Senha: </label>
+            <input type="password" class="form-control" id="senha" maxlength="50" name="password" title="Senha do usuário é obrigatória." ng-required="true" ng-model="Login.usuario.senha">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              <span aria-hidden="true"> Fechar </span>
+            </button>
+            <input type="submit" id="cadastrarSubmit" value="Cadastrar" ng-disabled="myForm.$invalid" class="btn btn-success"></input>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
